@@ -35,7 +35,7 @@ Squeep is a chat application that allows you to send real-time messages, make au
 
 
 ### Watch a comprehensive video overview of the project
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/vt5fpE0bzSY)
+[![Watch the video](https://res.cloudinary.com/deonmtztm/image/upload/v1677397149/qorxzx00sh9urgurtpqe.png)](https://youtu.be/id)
 ## Usage
 - Register for a new account or login to your existing account using your email address and password.
 - You can Edit your profile information such as your name, bio, profile picture and cover photo etc.
