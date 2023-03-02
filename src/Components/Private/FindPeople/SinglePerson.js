@@ -36,7 +36,7 @@ const SinglePerson = ({ user }) => {
                 lastMessage: '',
                 unseenMessages: 0,
                 timestamp: '',
-                isFriend: false
+                isFriend: false,
             }
             const result = await addConversation({ data, email }).unwrap();
             console.log(result);

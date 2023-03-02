@@ -54,11 +54,10 @@ const UserProfileInfo = ({ user }) => {
     }
 
 
-
     return (
         <>
             <div className='w-full h-[350px] bg-secondary rounded-b-xl'>
-                <img className='w-full h-full object-cover rounded-b-xl' src={"http://wallpapers.net/web/wallpapers/lamp-at-the-wall-hd-wallpaper/828x350.jpg"} alt="" />
+                <img className='w-full h-full object-cover rounded-b-xl' src={user.coverImg || "http://wallpapers.net/web/wallpapers/lamp-at-the-wall-hd-wallpaper/828x350.jpg"} alt="" />
             </div>
             <div className='w-[750px] mx-auto'>
                 <div className='relative -top-7 flex items-center justify-between'>

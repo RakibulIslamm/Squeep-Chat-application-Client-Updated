@@ -25,7 +25,7 @@ const SingleFriend = ({ user }) => {
         try {
             const { email, _id } = currentUserData;
             const currentUser = { email, id: _id };
-            const requestedPerson = { email: user.email, id: _id };
+            const requestedPerson = { email: user.email, id: user._id };
             const data = {
                 participants: [email, user?.email],
                 users: [user._id, _id],

@@ -29,7 +29,7 @@ const Message = ({ email, message, conversation, handleMessageData, setReplyText
                 {showDate && <p className={`text-xs text-[#8b99b3] mx-8 flex ${email === sender?.email ? 'justify-end' : 'justify-start'}`}>{moment(timestamp).format("dddd, Do MMMM, h:mm a")}</p>}
                 <div className={`flex ${email === sender?.email ? ' justify-end' : 'justify-start'}`}>
                     <div className={`flex items-center ${email === sender?.email ? ' justify-end' : 'justify-end flex-row-reverse'} gap-4 group w-full`}>
-                        <div id='manage-msg' className={`flex items-center gap-4 xxs:gap-3 ${email !== sender?.email && 'flex-row-reverse'}`}>
+                        {text !== 'message deleted' && <div id='manage-msg' className={`flex items-center gap-4 xxs:gap-3 ${email !== sender?.email && 'flex-row-reverse'}`}>
                             <div onClick={() => setOption(!option)} className={`relative xs:block group-hover:block text-2xl xxs:text-lg text-gray-500 transform rotate-90 ${option ? 'block' : 'hidden'}`} title='Manage'><BsThreeDots className='hover:text-white cursor-pointer' title='Manage' />
                                 {option &&
                                     <div className={`absolute bg-white ${email !== sender?.email ? '-top-20' : 'top-0'} right-10 flex justify-center items-center flex-col text-sm transform -rotate-90`}>
@@ -39,11 +39,11 @@ const Message = ({ email, message, conversation, handleMessageData, setReplyText
                                 }
                             </div>
                             <button onClick={() => { setReplyText(text); setReplyImage(img) }} className={`${option ? 'block' : 'hidden'} xs:block group-hover:block text-2xl xxs:text-lg text-gray-500 hover:text-white ${email === sender?.email && 'transform -scale-x-100'}`} title='Reply'><RiShareForwardLine /></button>
-                        </div>
+                        </div>}
                         <div>
                             {img && <LightBox image={img} email={email} sender={sender} text={text} />}
                             {(replyImg || replyText) && <div className={`px-4 xxs:px-2 pb-4 pt-2 xxs:py-1 xxs:text-sm ${email === sender?.email ? 'bg-secondary text-lightBlack rounded-b-none border border-[#5E6778] mr-8 xxs:mr-6' : 'bg-[#333b49] text-white rounded-bl-none ml-8 xxs:ml-6'} rounded-lg break-words'} max-w-[300px] -mb-2`}>
-                                <p className='text-xs text-white'><span>Reply: </span>{replyImg ? 'photo' : replyText}</p>
+                                <p className='text-xs text-white'><span>{sender?.email === email ? 'You' : participant?.name} Replied to {sender?.email !== email ? 'You' : participant?.name}:<br /></span>{replyImg ? 'photo' : replyText}</p>
                             </div>}
                             {text && <div className={`px-4 xxs:px-2 py-2 xxs:py-1 xxs:text-sm ${email === sender?.email ? text === 'message deleted' ? 'bg-gray-500 text-gray-200 rounded-br-none border border-[#5E6778] mr-8 xxs:mr-6' : 'bg-yellow text-lightBlack rounded-br-none border border-[#5E6778] mr-8 xxs:mr-6' : 'bg-secondary text-white rounded-bl-none ml-8 xxs:ml-6 border border-[#3e4550]'} rounded-lg break-words ${img && 'rounded-t-none w-[250px]'} max-w-[300px]`} onClick={() => setShowDate(!showDate)}>
                                 {

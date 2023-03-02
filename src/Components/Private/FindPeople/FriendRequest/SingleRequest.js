@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { RiUserReceived2Line, RiUserUnfollowLine } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { useChangeConversationStatusMutation, useGetSingleConversationQuery } from '../../../../features/conversations/conversationsAPI';
+import { useChangeConversationStatusMutation } from '../../../../features/conversations/conversationsAPI';
 import { useAcceptFriendMutation, useCancelFriendMutation } from '../../../../features/friends/friendsApi';
 import RotatingLinesLoader from '../../../../utils/Loader/RotatingLinesLoader';
 
@@ -19,8 +19,7 @@ const SingleRequest = ({ friend }) => {
     const handleAcceptFriend = async (id) => {
         setIsLoading(true);
         try {
-            const result = await acceptFriend({ id, email }).unwrap();
-            console.log(result);
+            await acceptFriend({ id, email }).unwrap();
             await changeConversationStatus({ conversationId: friend.conversationId, email });
         }
         catch (e) {
@@ -34,6 +33,7 @@ const SingleRequest = ({ friend }) => {
     const handleRejectFriend = async (id) => {
         setIsLoading(true);
         await cancelFriend({ id, email }).unwrap();
+
         setIsLoading(false);
     }
 

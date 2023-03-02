@@ -19,25 +19,21 @@ const useFirebase = () => {
 
     // Create account
     const createAccount = async (name, email, password) => {
-        setRegLoading(true)
+        setRegLoading(true);
         try {
+            const username = email.split('@')[0];
+            const userData = {
+                name: name,
+                username,
+                email,
+                img: null
+            }
+            await addUser({ data: userData }).unwrap();
             const result = await createUserWithEmailAndPassword(auth, email, password);
             const user = result.user;
-            // const currentUser = { name: name, email: user.email, img: user.photoURL }
             if (user?.email) {
                 try {
                     await updateProfile(auth.currentUser, { displayName: name });
-                    const { displayName, photoURL, email } = user;
-                    const username = email.split('@')[0];
-                    const userData = {
-                        name: displayName,
-                        username,
-                        email,
-                        img: photoURL
-                    }
-                    await addUser({
-                        data: userData
-                    })
                     navigate('/upload-image');
                 }
                 catch (err) {
@@ -57,10 +53,7 @@ const useFirebase = () => {
     const login = async (email, password, navigate) => {
         setLoginLoading(true);
         try {
-            const result = await signInWithEmailAndPassword(auth, email, password)
-            const user = result.user;
-            const currentUser = { name: user.displayName, email: user.email, img: user.photoURL }
-            // console.log(currentUser);
+            await signInWithEmailAndPassword(auth, email, password)
         }
         catch (err) {
             dispatch(authLogError(err.message));

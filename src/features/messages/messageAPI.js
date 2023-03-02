@@ -28,6 +28,8 @@ export const messageAPI = apiSlice.injectEndpoints({
                                 if (message._id === data._id) {
                                     message.message = 'message deleted';
                                     message.img = '';
+                                    message.replyText = '';
+                                    message.replyImg = '';
                                     return;
                                 }
                             }

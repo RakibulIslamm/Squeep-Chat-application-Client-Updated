@@ -9,7 +9,7 @@ const Friend = ({ friend, email }) => {
     const { data: requestedUsers, isLoading: reqLoading } = useGetRequestedFriendsQuery(myEmail);
     const { data: friends, isLoading } = useGetMyFriendsQuery(myEmail);
     const isRequested = requestedUsers?.find(request => request?.friendship?.includes(user?.email));
-    const isFriend = friends?.find(request => request?.friendship?.includes(user?.email));
+    const isFriend = friends?.find(request => request?.friendship?.includes(user?.email) && request.status === 'friend');
 
     return (
         <div className='p-3 w-full rounded-xl border border-secondary flex items-center justify-between'>

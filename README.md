@@ -8,7 +8,7 @@ Squeep is a chat application that allows you to send real-time messages, make au
 ## Features
 - Firebase registration and login
 - User profile management
-- Send and accept friend requests
+- Send, accept and cancel friend requests
 - Real-time messaging
 - Delete, forward and reply to messages
 - Send and receive photos
@@ -35,7 +35,7 @@ Squeep is a chat application that allows you to send real-time messages, make au
 
 
 ### Watch a comprehensive video overview of the project
-[![Watch the video](https://res.cloudinary.com/deonmtztm/image/upload/v1677397465/bxbncflt4qhqsuhhihgl.png)](https://youtu.be/id)
+[![Watch the video](https://res.cloudinary.com/deonmtztm/image/upload/v1677397465/bxbncflt4qhqsuhhihgl.png)](https://youtu.be/PNPW-rer2bQ)
 ## Usage
 - Register for a new account or login to your existing account using your email address and password.
 - You can Edit your profile information such as your name, bio, profile picture and cover photo etc.
@@ -45,9 +45,17 @@ Squeep is a chat application that allows you to send real-time messages, make au
 - See a list of active friends and view their profiles.
 - Make audio and video calls with your friends.
 - Edit your profile information or change your password anytime.
-## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+## Screenshots
+![App Screenshot](https://res.cloudinary.com/deonmtztm/image/upload/v1677773058/znwcbbbcoz9vygbo3lbt.png)
+![App Screenshot](https://res.cloudinary.com/deonmtztm/image/upload/v1677773058/zywdp5rorie8zcpfvxqi.png)
+![App Screenshot](https://res.cloudinary.com/deonmtztm/image/upload/v1677772879/u8hwrf6znz5zmaxuzovj.png)
+![App Screenshot](https://res.cloudinary.com/deonmtztm/image/upload/v1677772054/bjsmridyyosyb3ch2lsf.png)
+![App Screenshot](https://res.cloudinary.com/deonmtztm/image/upload/v1677772882/jujidfa7tkvqrpeotemn.png)
+![App Screenshot](https://res.cloudinary.com/deonmtztm/image/upload/v1677772054/bjsmridyyosyb3ch2lsf.png)
+![App Screenshot](https://res.cloudinary.com/deonmtztm/image/upload/v1677772881/mucd54syygsn2lmgr8bv.png)
+![App Screenshot](https://res.cloudinary.com/deonmtztm/image/upload/v1677772880/mecqyyy4whuytp1by74s.png)
+![App Screenshot](https://res.cloudinary.com/deonmtztm/image/upload/v1677772880/jnmxgkzqztumux9jn5hq.png)
 
 
 ## 🚀 About Me

@@ -44,17 +44,22 @@ const friendsApi = apiSlice.injectEndpoints({
                 url: `/accept/${id}`,
                 method: 'PUT'
             }),
-            invalidatesTags: ['friends'],
             async onQueryStarted({ id, email }, { dispatch, queryFulfilled }) {
                 try {
-                    await queryFulfilled;
+                    const newFriend = await queryFulfilled;
                     dispatch(
                         apiSlice.util.updateQueryData('getFriendRequest', email, (draft) => {
                             for (const user of draft) {
                                 if (user._id === id) {
-                                    user.status = 'friend'
+                                    user.status = 'friend';
+                                    return;
                                 }
                             }
+                        })
+                    );
+                    dispatch(
+                        apiSlice.util.updateQueryData('getMyFriends', email, (draft) => {
+                            draft.push(newFriend.data);
                         })
                     );
                 }
@@ -70,19 +75,17 @@ const friendsApi = apiSlice.injectEndpoints({
             }),
             async onQueryStarted({ id, email }, { dispatch, queryFulfilled }) {
                 try {
-                    const result = await queryFulfilled;
-                    if (result.data.deletedCount > 0) {
-                        dispatch(
-                            apiSlice.util.updateQueryData('getFriendRequest', email, (draft) => {
-                                for (const user of draft) {
-                                    if (user._id === id) {
-                                        user.status = 'cancel'
-                                        console.log(user.status);
-                                    }
+                    await queryFulfilled;
+                    dispatch(
+                        apiSlice.util.updateQueryData('getFriendRequest', email, (draft) => {
+                            for (const user of draft) {
+                                if (user._id === id) {
+                                    user.status = 'cancel'
+                                    return;
                                 }
-                            })
-                        )
-                    }
+                            }
+                        })
+                    )
                 }
                 catch (err) {
 
@@ -90,8 +93,7 @@ const friendsApi = apiSlice.injectEndpoints({
             },
         }),
         getMyFriends: builder.query({
-            query: (email) => `/friends?email=${email}`,
-            providesTags: ['friends']
+            query: (email) => `/friends?email=${email}`
         })
     })
 })

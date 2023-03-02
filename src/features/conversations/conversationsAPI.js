@@ -30,7 +30,6 @@ export const conversationsAPI = apiSlice.injectEndpoints({
                                     messageSent: true,
                                     timestamp: new Date().getTime()
                                 }
-                                return;
                             }
                         });
                         draft.sort((x, y) => {
@@ -65,8 +64,20 @@ export const conversationsAPI = apiSlice.injectEndpoints({
                                 c.delivered = data.delivered;
                                 c.sent = data.sent;
                                 c.unseenMessages += 1;
-                                return;
+                                break;
                             }
+                        }
+                        draft.sort((x, y) => {
+                            return new Date(x.timestamp) < new Date(y.timestamp) ? 1 : -1
+                        })
+                    })
+                });
+
+                socket.on("conversation", async (data) => {
+                    await cacheDataLoaded;
+                    updateCachedData(draft => {
+                        if (data.participants.includes(args)) {
+                            draft.push(data);
                         }
                         draft.sort((x, y) => {
                             return new Date(x.timestamp) < new Date(y.timestamp) ? 1 : -1
@@ -81,7 +92,7 @@ export const conversationsAPI = apiSlice.injectEndpoints({
                             if (c._id === data.id) {
                                 // console.log(data);
                                 c.lastSeen = data.data.lastSeen;
-                                return;
+                                break;
                             }
                         }
                     })
@@ -140,7 +151,6 @@ export const conversationsAPI = apiSlice.injectEndpoints({
                             draft.delivered = data.delivered;
                             draft.sent = data.sent;
                             draft.unseenMessages += 1;
-                            return;
                         }
                     })
                 });
@@ -179,26 +189,8 @@ export const conversationsAPI = apiSlice.injectEndpoints({
         changeConversationStatus: builder.mutation({
             query: ({ conversationId, email }) => ({
                 url: `/conversation-status/${conversationId}`,
-                method: 'PUT',
-                body: { isFriend: true }
-            }),
-            async onQueryStarted({ email }, { queryFulfilled, dispatch }) {
-                try {
-                    const result = await queryFulfilled;
-                    // console.log(result);
-                    dispatch(
-                        apiSlice.util.updateQueryData('getConversations', email, (draft) => {
-                            draft.unshift(result);
-                        })
-                    )
-                }
-                catch (err) {
-
-                }
-                finally {
-
-                }
-            }
+                method: 'PUT'
+            })
         })
 
     })
